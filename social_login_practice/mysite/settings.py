@@ -43,11 +43,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",
 
+    "rest_framework",
+    "djoser",
     "social_django",
-
-    "myapp",
 ]
 
 MIDDLEWARE = [
@@ -135,14 +134,13 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "home"
-
-SITE_ID = 1
-
 AUTHENTICATION_BACKENDS = (
     "social_core.backends.google.GoogleOAuth2",
 )
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
+
+DJOSER = {
+    "SOCIAL_AUTH_ALLOWED_REDIRECT_URIS": ["http://127.0.0.1:8000/accounts/profile/"]
+}

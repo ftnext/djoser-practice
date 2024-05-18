@@ -17,11 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-from django.contrib.auth import views as auth_views
+
+from mysite.social import RedirectSocialView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("auth/", include("social_django.urls", namespace="social")),
-    path("accounts/logout/", auth_views.LogoutView.as_view(), name="logout"),
-    path("", include("myapp.urls")),
+    path("api/auth/social/", include("djoser.social.urls")),
+    path("accounts/profile/", RedirectSocialView.as_view()),
 ]
